@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HLA2106: Workplace Writing II – Unit 22 Challenge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      min-height: 100vh;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    h1, h2 {
+      font-family: 'Baloo 2', cursive;
+      font-weight: 700;
+    }
+    .container {
+      max-width: 920px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      padding: 50px 40px;
+      animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hidden { display: none; }
+    .page-title {
+      text-align: center;
+      font-size: 2.8em;
+      color: #667eea;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(102,126,234,0.2);
+    }
+    .page-subtitle {
+      text-align: center;
+      font-size: 1.8em;
+      color: #764ba2;
+      margin-bottom: 30px;
+    }
+    .emoji-header {
+      font-size: 4em;
+      text-align: center;
+      margin: 20px 0;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .welcome-text {
+      text-align: center;
+      font-size: 1.3em;
+      color: #555;
+      margin: 25px 0;
+      line-height: 1.6;
+    }
+    .nav-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 18px 50px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.4em;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: 'Baloo 2', cursive;
+    }
+    .nav-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(102,126,234,0.6);
+    }
+    .nav-btn:active {
+      transform: translateY(-1px) scale(1.02);
+    }
+    /* Exercise styling */
+    ol.exercise {
+      padding-left: 0;
+      list-style: none;
+      counter-reset: question-counter;
+    }
+    ol.exercise > li {
+      counter-increment: question-counter;
+      margin-bottom: 35px;
+      padding: 25px 25px 25px 50px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: relative;
+      font-size: 1.15em;
+      line-height: 1.8;
+      transition: transform 0.2s;
+    }
+    ol.exercise > li:hover {
+      transform: translateX(5px);
+    }
+    ol.exercise > li::before {
+      content: counter(question-counter);
+      position: absolute;
+      left: -15px;
+      top: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.3em;
+      box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+    }
+    /* Blank labels */
+    .blank-label {
+      display: inline-block;
+      font-size: 0.85em;
+      font-weight: 700;
+      color: #667eea;
+      background: #e8eeff;
+      padding: 2px 8px;
+      border-radius: 5px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    /* Drag options container */
+    .drag-options {
+      margin: 15px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .drag-group {
+      margin: 10px 0;
+      padding: 10px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 10px;
+    }
+    .drag-group-label {
+      font-size: 0.95em;
+      font-weight: 700;
+      color: #764ba2;
+      margin-bottom: 8px;
+    }
+    .drag-item {
+      background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+      border: none;
+      border-radius: 12px;
+      padding: 10px 20px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: grab;
+      box-shadow: 0 4px 10px rgba(253,203,110,0.4);
+      transition: all 0.2s;
+      user-select: none;
+      display: inline-block;
+      margin: 3px;
+    }
+    .drag-item.blank1-option {
+      background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%);
+      box-shadow: 0 4px 10px rgba(86,171,145,0.4);
+    }
+    .drag-item.blank2-option {
+      background: linear-gradient(135deg, #ffb3ba 0%, #ff8fa3 100%);
+      box-shadow: 0 4px 10px rgba(255,143,163,0.4);
+    }
+    .drag-item:hover {
+      transform: scale(1.08);
+    }
+    .drag-item:active {
+      cursor: grabbing;
+      transform: scale(1.05);
+    }
+    .drag-item.used {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .drop-area {
+      display: inline-block;
+      min-width: 100px;
+      min-height: 35px;
+      padding: 5px 15px;
+      border: 3px dashed #667eea;
+      border-radius: 10px;
+      background: #fff;
+      text-align: center;
+      vertical-align: middle;
+      font-weight: 600;
+      color: #667eea;
+      transition: all 0.3s;
+      margin: 0 5px;
+    }
+    .drop-area.blank1 {
+      border-color: #56ab91;
+      background: #f0fff8;
+    }
+    .drop-area.blank2 {
+      border-color: #ff8fa3;
+      background: #fff5f7;
+    }
+    .drop-area.filled {
+      background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%);
+      border-color: #56ab91;
+      color: #fff;
+      animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.8); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    .drop-area.wrong {
+      background: #ff7675;
+      border-color: #d63031;
+      animation: shake 0.4s;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+    .explanation {
+      display: block;
+      margin-top: 15px;
+      padding: 15px;
+      background: #e8f5e9;
+      border-left: 5px solid #4caf50;
+      border-radius: 8px;
+      font-size: 1em;
+      color: #2e7d32;
+      animation: fadeIn 0.5s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .explanation.error {
+      background: #ffebee;
+      border-left-color: #f44336;
+      color: #c62828;
+    }
+    /* Clickable errors in proofreading */
+    .clickable {
+      background: linear-gradient(135deg, #ffe5e5 0%, #ffb8b8 100%);
+      padding: 3px 10px;
+      border-radius: 8px;
+      color: #d63031;
+      font-weight: 700;
+      cursor: pointer;
+      border-bottom: 3px solid #d63031;
+      transition: all 0.2s;
+    }
+    .clickable:hover {
+      background: linear-gradient(135deg, #ffd7d7 0%, #ff9999 100%);
+      transform: scale(1.05);
+    }
+    .clickable.corrected {
+      background: linear-gradient(135deg, #d4edda 0%, #a8e6cf 100%);
+      color: #155724;
+      border-bottom-color: #28a745;
+    }
+    /* Correction popup */
+    #correction-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      z-index: 10000;
+      min-width: 400px;
+      text-align: center;
+      animation: popupIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes popupIn {
+      to { transform: translate(-50%, -50%) scale(1); }
+    }
+    #correction-popup h3 {
+      font-size: 1.8em;
+      color: #667eea;
+      margin-bottom: 20px;
+    }
+    #correction-input {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2em;
+      border: 3px solid #667eea;
+      border-radius: 12px;
+      margin: 15px 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    #correction-popup button {
+      padding: 12px 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2em;
+      font-weight: 700;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.3s;
+    }
+    #correction-popup button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(102,126,234,0.4);
+    }
+    #correction-feedback {
+      display: block;
+      margin-top: 15px;
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+    /* Summary page */
+    .summary-card {
+      background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+      padding: 25px;
+      border-radius: 16px;
+      margin: 20px 0;
+      box-shadow: 0 8px 20px rgba(253,203,110,0.4);
+    }
+    .summary-list {
+      list-style: none;
+      padding: 0;
+    }
+    .summary-list li {
+      background: #fff;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border-left: 5px solid #667eea;
+      font-size: 1.05em;
+    }
+    /* Confetti effect */
+    .confetti-piece {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #667eea;
+      top: -10px;
+      opacity: 0;
+      animation: confettiFall 3s ease-out forwards;
+      z-index: 9999;
+    }
+    @keyframes confettiFall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Landing Page -->
+<div class="container" id="page-landing">
+  <div class="emoji-header">🌟🏨🌬️</div>
+  <h1 class="page-title">HLA2106: Workplace Writing II</h1>
+  <h2 class="page-subtitle">Unit 22: Stating Preferences with Explanations</h2>
+  <p class="welcome-text">
+    🚀 Challenge Yourselves! 🍀<br>
+    Ready to master verb forms and improve your workplace writing skills?
+  </p>
+  <ul style="font-size: 1.15em; max-width: 600px; margin: 30px auto; text-align: left; line-height: 2;">
+    <li>✨ Drag & drop correct verb forms</li>
+    <li>📝 Proofread sentences and fix errors</li>
+    <li>🎯 Get instant feedback and helpful hints</li>
+    <li>📊 Review your progress and learn from mistakes</li>
+  </ul>
+  <button class="nav-btn" onclick="showPage('section1')">Start Section 1 🎯</button>
+</div>
+
+<!-- Section 1: Drag and Drop -->
+<div class="container hidden" id="section1">
+  <h1 class="page-title">Section 1: Drag-and-Drop 🤲</h1>
+  <h2 class="page-subtitle">Drag the correct verb form into each blank</h2>
+  
+  <ol class="exercise">
+    <li>
+      Because of the limited budget, my preference would be for
+      <span class="drop-area" id="drop1" data-answer="improving"></span>
+      (improve) the main ventilation areas first instead of renovating all rooms at once.
+      <div class="drag-options">
+        <span class="drag-item" draggable="true">improve</span>
+        <span class="drag-item" draggable="true">improving</span>
+        <span class="drag-item" draggable="true">to improve</span>
+      </div>
+      <span class="explanation hidden" id="exp1"></span>
+    </li>
+
+    <li>
+      Even if it costs more at first, I would rather
+      <span class="blank-label">Blank 1:</span>
+      <span class="drop-area blank1" id="drop2a" data-answer="buy"></span>
+      (buy) energy-saving equipment than
+      <span class="blank-label">Blank 2:</span>
+      <span class="drop-area blank2" id="drop2b" data-answer="waste"></span>
+      (waste) money on electricity bills later.
+      <div class="drag-group">
+        <div class="drag-group-label">💚 Options for Blank 1 (buy):</div>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop2a">buy</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop2a">buying</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop2a">to buy</span>
+      </div>
+      <div class="drag-group">
+        <div class="drag-group-label">❤️ Options for Blank 2 (waste):</div>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop2b">waste</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop2b">wasting</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop2b">to waste</span>
+      </div>
+      <span class="explanation hidden" id="exp2"></span>
+    </li>
+
+    <li>
+      The management team prefers
+      <span class="drop-area" id="drop3" data-answer="not to use" data-answer2="not using"></span>
+      (not use) strong chemicals because they may be bad for health.
+      <div class="drag-options">
+        <span class="drag-item" draggable="true">not use</span>
+        <span class="drag-item" draggable="true">not using</span>
+        <span class="drag-item" draggable="true">not to use</span>
+      </div>
+      <span class="explanation hidden" id="exp3"></span>
+    </li>
+
+    <li>
+      Our preferred way to solve the bad air problem is
+      <span class="drop-area" id="drop4" data-answer="to mix"></span>
+      (mix) fresh air with filtered air.
+      <div class="drag-options">
+        <span class="drag-item" draggable="true">mix</span>
+        <span class="drag-item" draggable="true">mixing</span>
+        <span class="drag-item" draggable="true">to mix</span>
+      </div>
+      <span class="explanation hidden" id="exp4"></span>
+    </li>
+
+    <li>
+      <span class="blank-label">Blank 1:</span>
+      <span class="drop-area blank1" id="drop5a" data-answer="Checking"></span>
+      (Check) the equipment every three months is preferable to
+      <span class="blank-label">Blank 2:</span>
+      <span class="drop-area blank2" id="drop5b" data-answer="waiting"></span>
+      (wait) until something breaks down.
+      <div class="drag-group">
+        <div class="drag-group-label">💚 Options for Blank 1 (Check):</div>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop5a">Check</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop5a">Checking</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop5a">To check</span>
+      </div>
+      <div class="drag-group">
+        <div class="drag-group-label">❤️ Options for Blank 2 (wait):</div>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop5b">wait</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop5b">waiting</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop5b">to wait</span>
+      </div>
+      <span class="explanation hidden" id="exp5"></span>
+    </li>
+
+    <li>
+      When choosing air quality solutions, I'd prefer
+      <span class="blank-label">Blank 1:</span>
+      <span class="drop-area blank1" id="drop6a" data-answer="to ask"></span>
+      (ask) experts for advice rather than
+      <span class="blank-label">Blank 2:</span>
+      <span class="drop-area blank2" id="drop6b" data-answer="decide"></span>
+      (decide) based only on price.
+      <div class="drag-group">
+        <div class="drag-group-label">💚 Options for Blank 1 (ask):</div>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop6a">ask</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop6a">asking</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop6a">to ask</span>
+      </div>
+      <div class="drag-group">
+        <div class="drag-group-label">❤️ Options for Blank 2 (decide):</div>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop6b">decide</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop6b">deciding</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop6b">to decide</span>
+      </div>
+      <span class="explanation hidden" id="exp6"></span>
+    </li>
+  </ol>
+
+  <button class="nav-btn" onclick="showPage('section2')">Next: Section 2 📝</button>
+</div>
+
+<!-- Section 2: Proofreading -->
+<div class="container hidden" id="section2">
+  <h1 class="page-title">Section 2: Proofreading 🔍</h1>
+  <h2 class="page-subtitle">Click the incorrect word and type the correction</h2>
+  
+  <ol class="exercise">
+    <li>
+      My preference would be for <span class="clickable" data-correct="installing" data-hint="Use gerund after preposition 'for'.">install</span> air purifiers in all guest rooms.
+      <span class="explanation hidden" id="proof-exp1"></span>
+    </li>
+
+    <li>
+      I would rather <span class="clickable" data-correct="upgrade" data-hint="Use base form after 'would rather'.">upgrading</span> the main ventilation system than spend money on temporary solutions.
+      <span class="explanation hidden" id="proof-exp2"></span>
+    </li>
+
+    <li>
+      Using smart sensors is preferable to <span class="clickable" data-correct="testing" data-hint="Use gerund after preposition 'to'.">test</span> air quality manually every week.
+      <span class="explanation hidden" id="proof-exp3"></span>
+    </li>
+
+    <li>
+      Our preferred way to <span class="clickable" data-correct="improve" data-hint="Use base form infinitive after 'way to'.">improving</span> guest satisfaction is to provide excellent air quality.
+      <span class="explanation hidden" id="proof-exp4"></span>
+    </li>
+
+    <li>
+      The management team prefers <span class="clickable" data-correct="not to use" data-correct2="not using" data-hint="'Prefer' can take either 'not to use' (to-infinitive) or 'not using' (gerund). Both are correct!">not use</span> strong chemicals because they may be bad for health.
+      <span class="explanation hidden" id="proof-exp5"></span>
+    </li>
+
+    <li>
+      <span class="clickable" data-correct="Installing" data-hint="Use gerund as subject at the beginning of a sentence.">Install</span> eco-friendly cleaning products is preferable to using harsh chemicals.
+      <span class="explanation hidden" id="proof-exp6"></span>
+    </li>
+  </ol>
+
+  <button class="nav-btn" onclick="showPage('summary')">See Summary 📊</button>
+</div>
+
+<!-- Summary Page -->
+<div class="container hidden" id="summary">
+  <div class="emoji-header">🎉📊✨</div>
+  <h1 class="page-title">Summary & Progress 📝</h1>
+  <h2 class="page-subtitle">Review your learning journey</h2>
+  
+  <div class="summary-card">
+    <h3 style="font-size: 1.5em; margin-bottom: 15px;">🎯 Areas for Review:</h3>
+    <ul class="summary-list" id="weakness-list"></ul>
+  </div>
+
+  <div class="summary-card" style="background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%);">
+    <h3 style="font-size: 1.5em; color: #fff; margin-bottom: 10px;">🌟 Great Job!</h3>
+    <p style="color: #fff; font-size: 1.1em;">Keep practicing to master verb forms for stating preferences!</p>
+  </div>
+
+  <button class="nav-btn" onclick="showPage('landing')">Return to Start 🏠</button>
+</div>
+
+<!-- Correction Popup -->
+<div class="hidden" id="correction-popup">
+  <h3>✏️ Type the Correction</h3>
+  <input type="text" id="correction-input" placeholder="Type here..." autocomplete="off">
+  <div>
+    <button onclick="submitCorrection()">Submit ✅</button>
+    <button onclick="closePopup()" style="background: linear-gradient(135deg, #a8a8a8 0%, #7a7a7a 100%);">Cancel ❌</button>
+  </div>
+  <span id="correction-feedback"></span>
+</div>
+
+<script>
+// Navigation
+function showPage(name) {
+  ['landing', 'section1', 'section2', 'summary'].forEach(id => {
+    const el = document.getElementById('page-' + id) || document.getElementById(id);
+    if (el) el.classList.add('hidden');
+  });
+  const target = document.getElementById('page-' + name) || document.getElementById(name);
+  if (target) target.classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+// Drag and Drop
+let draggedItem = null;
+
+document.querySelectorAll('.drag-item').forEach(item => {
+  item.addEventListener('dragstart', e => {
+    draggedItem = item;
+    setTimeout(() => item.style.opacity = '0.4', 0);
+  });
+  item.addEventListener('dragend', e => {
+    item.style.opacity = '1';
+  });
+});
+
+document.querySelectorAll('.drop-area').forEach(area => {
+  area.addEventListener('dragover', e => e.preventDefault());
+  area.addEventListener('drop', function(e) {
+    e.preventDefault();
+    if (!draggedItem) return;
+    
+    // Check if drag item is for this specific blank (for two-blank questions)
+    const dragFor = draggedItem.dataset.for;
+    if (dragFor && dragFor !== this.id) {
+      return; // Don't allow drop if wrong blank
+    }
+    
+    const value = draggedItem.textContent;
+    const correct = this.dataset.answer;
+    const correct2 = this.dataset.answer2; // Alternative answer
+    
+    this.textContent = value;
+    this.classList.add('filled');
+    draggedItem.classList.add('used');
+    
+    const qNum = this.id.replace('drop', '').replace(/[a-z]/g, '');
+    const expEl = document.getElementById('exp' + qNum);
+    
+    const hints = {
+      '1': "Use gerund after 'would be' when stating preference.",
+      '2a': "Use base verb after 'would rather'.",
+      '2b': "Use base verb after 'than' in 'would rather...than' pattern.",
+      '3': "'Prefer' can take both 'not to use' (to-infinitive) and 'not using' (gerund). Both are correct!",
+      '4': "Use to-infinitive after 'is' when stating the preferred method.",
+      '5a': "Use gerund as subject at the beginning of a sentence.",
+      '5b': "Use gerund after preposition 'to' (when 'to' is a preposition, not part of infinitive).",
+      '6a': "'Prefer' can take both to-infinitive and gerund, but to-infinitive is more common.",
+      '6b': "'Rather than' takes base verb in this pattern."
+    };
+    
+    const isCorrect = (value === correct) || (correct2 && value === correct2);
+    
+    if (isCorrect) {
+      expEl.classList.remove('hidden', 'error');
+      expEl.innerHTML = `🎉 Correct! ${hints[this.id.replace('drop', '')]}`;
+      createConfetti();
+    } else {
+      this.classList.add('wrong');
+      expEl.classList.remove('hidden');
+      expEl.classList.add('error');
+      expEl.innerHTML = `❌ Try again! Hint: ${hints[this.id.replace('drop', '')]}`;
+      setTimeout(() => this.classList.remove('wrong'), 500);
+    }
+  });
+});
+
+// Proofreading
+let activeClickable, activeExp;
+
+document.querySelectorAll('.clickable').forEach(span => {
+  span.addEventListener('click', function() {
+    activeClickable = this;
+    const parent = this.closest('li');
+    activeExp = parent.querySelector('.explanation');
+    document.getElementById('correction-popup').classList.remove('hidden');
+    document.getElementById('correction-input').value = '';
+    document.getElementById('correction-feedback').textContent = '';
+    document.getElementById('correction-input').focus();
+  });
+});
+
+function submitCorrection() {
+  const input = document.getElementById('correction-input').value.trim();
+  const correct = activeClickable.dataset.correct;
+  const correct2 = activeClickable.dataset.correct2;
+  const hint = activeClickable.dataset.hint;
+  const feedback = document.getElementById('correction-feedback');
+  
+  const isCorrect = (input.toLowerCase() === correct.toLowerCase()) || 
+                    (correct2 && input.toLowerCase() === correct2.toLowerCase());
+  
+  if (isCorrect) {
+    activeClickable.textContent = input;
+    activeClickable.classList.add('corrected');
+    activeClickable.classList.remove('clickable');
+    feedback.style.color = '#28a745';
+    feedback.textContent = '✅ Correct!';
+    activeExp.classList.remove('hidden');
+    activeExp.innerHTML = `🎯 ${hint}`;
+    addToSummary(hint);
+    createConfetti();
+    setTimeout(closePopup, 1200);
+  } else {
+    feedback.style.color = '#d63031';
+    feedback.textContent = '❌ Try again!';
+  }
+}
+
+function closePopup() {
+  document.getElementById('correction-popup').classList.add('hidden');
+}
+
+function addToSummary(explanation) {
+  const list = document.getElementById('weakness-list');
+  const li = document.createElement('li');
+  li.innerHTML = `💡 ${explanation}`;
+  list.appendChild(li);
+}
+
+function createConfetti() {
+  const colors = ['#667eea', '#764ba2', '#f093fb', '#ffeaa7', '#a8e6cf'];
+  for (let i = 0; i < 15; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti-piece';
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+    confetti.style.animationDelay = Math.random() * 0.3 + 's';
+    document.body.appendChild(confetti);
+    setTimeout(() => confetti.remove(), 3000);
+  }
+}
+
+// Initialize
+showPage('landing');
+</script>
+</body>
+</html>
