@@ -346,6 +346,12 @@
       border-left: 5px solid #667eea;
       font-size: 1.05em;
     }
+    .no-mistakes {
+      text-align: center;
+      font-size: 1.2em;
+      color: #28a745;
+      padding: 20px;
+    }
     /* Confetti effect */
     .confetti-piece {
       position: fixed;
@@ -546,8 +552,10 @@
   <h2 class="page-subtitle">Review your learning journey</h2>
   
   <div class="summary-card">
-    <h3 style="font-size: 1.5em; margin-bottom: 15px;">🎯 Areas for Review:</h3>
-    <ul class="summary-list" id="weakness-list"></ul>
+    <h3 style="font-size: 1.5em; margin-bottom: 15px;">🎯 Grammar Patterns to Review:</h3>
+    <ul class="summary-list" id="weakness-list">
+      <li class="no-mistakes">Complete the exercises to see your personalized summary here! 🌟</li>
+    </ul>
   </div>
 
   <div class="summary-card" style="background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%);">
@@ -570,6 +578,9 @@
 </div>
 
 <script>
+// Global mistake tracker
+let mistakesSummary = [];
+
 // Navigation
 function showPage(name) {
   ['landing', 'section1', 'section2', 'summary'].forEach(id => {
@@ -579,6 +590,11 @@ function showPage(name) {
   const target = document.getElementById('page-' + name) || document.getElementById(name);
   if (target) target.classList.remove('hidden');
   window.scrollTo(0, 0);
+  
+  // Update summary when showing summary page
+  if (name === 'summary') {
+    updateSummaryPage();
+  }
 }
 
 // Drag and Drop
@@ -640,6 +656,10 @@ document.querySelectorAll('.drop-area').forEach(area => {
       expEl.classList.remove('hidden');
       expEl.classList.add('error');
       expEl.innerHTML = `❌ Try again! Hint: ${hints[this.id.replace('drop', '')]}`;
+      
+      // Add to mistakes summary
+      addToSummary(`Section 1, Q${qNum}: ${hints[this.id.replace('drop', '')]}`);
+      
       setTimeout(() => this.classList.remove('wrong'), 500);
     }
   });
@@ -678,12 +698,20 @@ function submitCorrection() {
     feedback.textContent = '✅ Correct!';
     activeExp.classList.remove('hidden');
     activeExp.innerHTML = `🎯 ${hint}`;
-    addToSummary(hint);
     createConfetti();
     setTimeout(closePopup, 1200);
   } else {
     feedback.style.color = '#d63031';
     feedback.textContent = '❌ Try again!';
+    
+    // Add to mistakes summary only on first wrong attempt per question
+    const parent = activeClickable.closest('li');
+    const qNum = Array.from(parent.parentElement.children).indexOf(parent) + 1;
+    const mistakeKey = `Section 2, Q${qNum}`;
+    const alreadyRecorded = mistakesSummary.some(m => m.startsWith(mistakeKey));
+    if (!alreadyRecorded) {
+      addToSummary(`${mistakeKey}: ${hint}`);
+    }
   }
 }
 
@@ -691,11 +719,25 @@ function closePopup() {
   document.getElementById('correction-popup').classList.add('hidden');
 }
 
-function addToSummary(explanation) {
+function addToSummary(text) {
+  if (!mistakesSummary.includes(text)) {
+    mistakesSummary.push(text);
+  }
+}
+
+function updateSummaryPage() {
   const list = document.getElementById('weakness-list');
-  const li = document.createElement('li');
-  li.innerHTML = `💡 ${explanation}`;
-  list.appendChild(li);
+  list.innerHTML = ''; // Clear existing content
+  
+  if (mistakesSummary.length === 0) {
+    list.innerHTML = '<li class="no-mistakes">🎉 Perfect! You made no mistakes! Excellent work! 🌟</li>';
+  } else {
+    mistakesSummary.forEach(mistake => {
+      const li = document.createElement('li');
+      li.innerHTML = `💡 ${mistake}`;
+      list.appendChild(li);
+    });
+  }
 }
 
 function createConfetti() {
