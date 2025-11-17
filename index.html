@@ -28,6 +28,12 @@
       animation: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
     }
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 20px;
+        margin: 20px auto;
+      }
+    }
     @keyframes slideIn {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -40,17 +46,26 @@
       margin-bottom: 10px;
       text-shadow: 2px 2px 4px rgba(102,126,234,0.2);
     }
+    @media (max-width: 768px) {
+      .page-title { font-size: 2em; }
+    }
     .page-subtitle {
       text-align: center;
       font-size: 1.8em;
       color: #764ba2;
       margin-bottom: 30px;
     }
+    @media (max-width: 768px) {
+      .page-subtitle { font-size: 1.3em; }
+    }
     .emoji-header {
       font-size: 4em;
       text-align: center;
       margin: 20px 0;
       animation: bounce 2s infinite;
+    }
+    @media (max-width: 768px) {
+      .emoji-header { font-size: 3em; }
     }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
@@ -62,6 +77,9 @@
       color: #555;
       margin: 25px 0;
       line-height: 1.6;
+    }
+    @media (max-width: 768px) {
+      .welcome-text { font-size: 1.1em; }
     }
     .nav-btn {
       display: block;
@@ -77,6 +95,12 @@
       box-shadow: 0 10px 30px rgba(102,126,234,0.4);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       font-family: 'Baloo 2', cursive;
+    }
+    @media (max-width: 768px) {
+      .nav-btn { 
+        font-size: 1.2em; 
+        padding: 15px 35px;
+      }
     }
     .nav-btn:hover {
       transform: translateY(-3px) scale(1.05);
@@ -103,6 +127,12 @@
       line-height: 1.8;
       transition: transform 0.2s;
     }
+    @media (max-width: 768px) {
+      ol.exercise > li {
+        padding: 20px 15px 20px 40px;
+        font-size: 1em;
+      }
+    }
     ol.exercise > li:hover {
       transform: translateX(5px);
     }
@@ -122,6 +152,14 @@
       font-weight: 700;
       font-size: 1.3em;
       box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+    }
+    @media (max-width: 768px) {
+      ol.exercise > li::before {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1em;
+        left: -10px;
+      }
     }
     /* Blank labels */
     .blank-label {
@@ -161,12 +199,18 @@
       padding: 10px 20px;
       font-size: 1.1em;
       font-weight: 600;
-      cursor: grab;
+      cursor: pointer;
       box-shadow: 0 4px 10px rgba(253,203,110,0.4);
       transition: all 0.2s;
       user-select: none;
       display: inline-block;
       margin: 3px;
+    }
+    @media (max-width: 768px) {
+      .drag-item {
+        padding: 8px 15px;
+        font-size: 1em;
+      }
     }
     .drag-item.blank1-option {
       background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%);
@@ -180,13 +224,17 @@
       transform: scale(1.08);
     }
     .drag-item:active {
-      cursor: grabbing;
       transform: scale(1.05);
     }
     .drag-item.used {
       opacity: 0.3;
       cursor: not-allowed;
       pointer-events: none;
+    }
+    .drag-item.selected {
+      border: 3px solid #667eea;
+      box-shadow: 0 0 15px rgba(102,126,234,0.6);
+      transform: scale(1.1);
     }
     .drop-area {
       display: inline-block;
@@ -202,6 +250,13 @@
       color: #667eea;
       transition: all 0.3s;
       margin: 0 5px;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .drop-area {
+        min-width: 80px;
+        font-size: 0.95em;
+      }
     }
     .drop-area.blank1 {
       border-color: #56ab91;
@@ -210,6 +265,15 @@
     .drop-area.blank2 {
       border-color: #ff8fa3;
       background: #fff5f7;
+    }
+    .drop-area.active-target {
+      background: #fffacd;
+      border-color: #ffd700;
+      animation: pulse 0.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
     .drop-area.filled {
       background: linear-gradient(135deg, #a8e6cf 0%, #56ab91 100%);
@@ -242,6 +306,9 @@
       font-size: 1em;
       color: #2e7d32;
       animation: fadeIn 0.5s;
+    }
+    @media (max-width: 768px) {
+      .explanation { font-size: 0.9em; }
     }
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -287,6 +354,12 @@
       text-align: center;
       animation: popupIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+    @media (max-width: 768px) {
+      #correction-popup {
+        min-width: 90%;
+        padding: 25px;
+      }
+    }
     @keyframes popupIn {
       to { transform: translate(-50%, -50%) scale(1); }
     }
@@ -294,6 +367,9 @@
       font-size: 1.8em;
       color: #667eea;
       margin-bottom: 20px;
+    }
+    @media (max-width: 768px) {
+      #correction-popup h3 { font-size: 1.4em; }
     }
     #correction-input {
       width: 100%;
@@ -315,6 +391,13 @@
       cursor: pointer;
       margin: 10px;
       transition: all 0.3s;
+    }
+    @media (max-width: 768px) {
+      #correction-popup button {
+        padding: 10px 25px;
+        font-size: 1em;
+        margin: 5px;
+      }
     }
     #correction-popup button:hover {
       transform: scale(1.05);
@@ -346,11 +429,29 @@
       border-left: 5px solid #667eea;
       font-size: 1.05em;
     }
+    @media (max-width: 768px) {
+      .summary-list li { font-size: 0.95em; }
+    }
     .no-mistakes {
       text-align: center;
       font-size: 1.2em;
       color: #28a745;
       padding: 20px;
+    }
+    /* Instruction text for mobile */
+    .mobile-instruction {
+      display: none;
+      text-align: center;
+      padding: 10px;
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      border-radius: 10px;
+      margin: 15px 0;
+      font-size: 0.95em;
+      color: #856404;
+    }
+    @media (max-width: 768px) {
+      .mobile-instruction { display: block; }
     }
     /* Confetti effect */
     .confetti-piece {
@@ -383,7 +484,7 @@
     Ready to master verb forms and improve your workplace writing skills?
   </p>
   <ul style="font-size: 1.15em; max-width: 600px; margin: 30px auto; text-align: left; line-height: 2;">
-    <li>✨ Drag & drop correct verb forms</li>
+    <li>✨ Tap or drag the correct verb forms</li>
     <li>📝 Proofread sentences and fix errors</li>
     <li>🎯 Get instant feedback and helpful hints</li>
     <li>📊 Review your progress and learn from mistakes</li>
@@ -391,20 +492,24 @@
   <button class="nav-btn" onclick="showPage('section1')">Start Section 1 🎯</button>
 </div>
 
-<!-- Section 1: Drag and Drop -->
+<!-- Section 1: Drag and Drop / Tap to Select -->
 <div class="container hidden" id="section1">
-  <h1 class="page-title">Section 1: Drag-and-Drop 🤲</h1>
-  <h2 class="page-subtitle">Drag the correct verb form into each blank</h2>
+  <h1 class="page-title">Section 1: Verb Forms 🤲</h1>
+  <h2 class="page-subtitle">Select the correct verb form for each blank</h2>
+  
+  <div class="mobile-instruction">
+    📱 <strong>Mobile Users:</strong> Tap an option, then tap the blank to fill it in!
+  </div>
   
   <ol class="exercise">
     <li>
-      Because of the limited budget, my preference would be for
-      <span class="drop-area" id="drop1" data-answer="improving"></span>
+      Because of the limited budget, my preference would be
+      <span class="drop-area" id="drop1" data-answer="improving" onclick="handleDropAreaClick(this)"></span>
       (improve) the main ventilation areas first instead of renovating all rooms at once.
       <div class="drag-options">
-        <span class="drag-item" draggable="true">improve</span>
-        <span class="drag-item" draggable="true">improving</span>
-        <span class="drag-item" draggable="true">to improve</span>
+        <span class="drag-item" draggable="true" onclick="handleItemClick(this)">improve</span>
+        <span class="drag-item" draggable="true" onclick="handleItemClick(this)">improving</span>
+        <span class="drag-item" draggable="true" onclick="handleItemClick(this)">to improve</span>
       </div>
       <span class="explanation hidden" id="exp1"></span>
     </li>
@@ -412,68 +517,68 @@
     <li>
       Even if it costs more at first, I would rather
       <span class="blank-label">Blank 1:</span>
-      <span class="drop-area blank1" id="drop2a" data-answer="buy"></span>
+      <span class="drop-area blank1" id="drop2a" data-answer="buy" onclick="handleDropAreaClick(this)"></span>
       (buy) energy-saving equipment than
       <span class="blank-label">Blank 2:</span>
-      <span class="drop-area blank2" id="drop2b" data-answer="waste"></span>
+      <span class="drop-area blank2" id="drop2b" data-answer="waste" onclick="handleDropAreaClick(this)"></span>
       (waste) money on electricity bills later.
       <div class="drag-group">
         <div class="drag-group-label">💚 Options for Blank 1 (buy):</div>
-        <span class="drag-item blank1-option" draggable="true" data-for="drop2a">buy</span>
-        <span class="drag-item blank1-option" draggable="true" data-for="drop2a">buying</span>
-        <span class="drag-item blank1-option" draggable="true" data-for="drop2a">to buy</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop2a" onclick="handleItemClick(this)">buy</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop2a" onclick="handleItemClick(this)">buying</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop2a" onclick="handleItemClick(this)">to buy</span>
       </div>
       <div class="drag-group">
         <div class="drag-group-label">❤️ Options for Blank 2 (waste):</div>
-        <span class="drag-item blank2-option" draggable="true" data-for="drop2b">waste</span>
-        <span class="drag-item blank2-option" draggable="true" data-for="drop2b">wasting</span>
-        <span class="drag-item blank2-option" draggable="true" data-for="drop2b">to waste</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop2b" onclick="handleItemClick(this)">waste</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop2b" onclick="handleItemClick(this)">wasting</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop2b" onclick="handleItemClick(this)">to waste</span>
       </div>
       <span class="explanation hidden" id="exp2"></span>
     </li>
 
     <li>
       The management team prefers
-      <span class="drop-area" id="drop3" data-answer="not to use" data-answer2="not using"></span>
+      <span class="drop-area" id="drop3" data-answer="not to use" data-answer2="not using" onclick="handleDropAreaClick(this)"></span>
       (not use) strong chemicals because they may be bad for health.
       <div class="drag-options">
-        <span class="drag-item" draggable="true">not use</span>
-        <span class="drag-item" draggable="true">not using</span>
-        <span class="drag-item" draggable="true">not to use</span>
+        <span class="drag-item" draggable="true" onclick="handleItemClick(this)">not use</span>
+        <span class="drag-item" draggable="true" onclick="handleItemClick(this)">not using</span>
+        <span class="drag-item" draggable="true" onclick="handleItemClick(this)">not to use</span>
       </div>
       <span class="explanation hidden" id="exp3"></span>
     </li>
 
     <li>
       Our preferred way to solve the bad air problem is
-      <span class="drop-area" id="drop4" data-answer="to mix"></span>
+      <span class="drop-area" id="drop4" data-answer="to mix" onclick="handleDropAreaClick(this)"></span>
       (mix) fresh air with filtered air.
       <div class="drag-options">
-        <span class="drag-item" draggable="true">mix</span>
-        <span class="drag-item" draggable="true">mixing</span>
-        <span class="drag-item" draggable="true">to mix</span>
+        <span class="drag-item" draggable="true" onclick="handleItemClick(this)">mix</span>
+        <span class="drag-item" draggable="true" onclick="handleItemClick(this)">mixing</span>
+        <span class="drag-item" draggable="true" onclick="handleItemClick(this)">to mix</span>
       </div>
       <span class="explanation hidden" id="exp4"></span>
     </li>
 
     <li>
       <span class="blank-label">Blank 1:</span>
-      <span class="drop-area blank1" id="drop5a" data-answer="Checking"></span>
+      <span class="drop-area blank1" id="drop5a" data-answer="Checking" onclick="handleDropAreaClick(this)"></span>
       (Check) the equipment every three months is preferable to
       <span class="blank-label">Blank 2:</span>
-      <span class="drop-area blank2" id="drop5b" data-answer="waiting"></span>
+      <span class="drop-area blank2" id="drop5b" data-answer="waiting" onclick="handleDropAreaClick(this)"></span>
       (wait) until something breaks down.
       <div class="drag-group">
         <div class="drag-group-label">💚 Options for Blank 1 (Check):</div>
-        <span class="drag-item blank1-option" draggable="true" data-for="drop5a">Check</span>
-        <span class="drag-item blank1-option" draggable="true" data-for="drop5a">Checking</span>
-        <span class="drag-item blank1-option" draggable="true" data-for="drop5a">To check</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop5a" onclick="handleItemClick(this)">Check</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop5a" onclick="handleItemClick(this)">Checking</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop5a" onclick="handleItemClick(this)">To check</span>
       </div>
       <div class="drag-group">
         <div class="drag-group-label">❤️ Options for Blank 2 (wait):</div>
-        <span class="drag-item blank2-option" draggable="true" data-for="drop5b">wait</span>
-        <span class="drag-item blank2-option" draggable="true" data-for="drop5b">waiting</span>
-        <span class="drag-item blank2-option" draggable="true" data-for="drop5b">to wait</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop5b" onclick="handleItemClick(this)">wait</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop5b" onclick="handleItemClick(this)">waiting</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop5b" onclick="handleItemClick(this)">to wait</span>
       </div>
       <span class="explanation hidden" id="exp5"></span>
     </li>
@@ -481,22 +586,22 @@
     <li>
       When choosing air quality solutions, I'd prefer
       <span class="blank-label">Blank 1:</span>
-      <span class="drop-area blank1" id="drop6a" data-answer="to ask"></span>
+      <span class="drop-area blank1" id="drop6a" data-answer="to ask" onclick="handleDropAreaClick(this)"></span>
       (ask) experts for advice rather than
       <span class="blank-label">Blank 2:</span>
-      <span class="drop-area blank2" id="drop6b" data-answer="decide"></span>
+      <span class="drop-area blank2" id="drop6b" data-answer="decide" onclick="handleDropAreaClick(this)"></span>
       (decide) based only on price.
       <div class="drag-group">
         <div class="drag-group-label">💚 Options for Blank 1 (ask):</div>
-        <span class="drag-item blank1-option" draggable="true" data-for="drop6a">ask</span>
-        <span class="drag-item blank1-option" draggable="true" data-for="drop6a">asking</span>
-        <span class="drag-item blank1-option" draggable="true" data-for="drop6a">to ask</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop6a" onclick="handleItemClick(this)">ask</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop6a" onclick="handleItemClick(this)">asking</span>
+        <span class="drag-item blank1-option" draggable="true" data-for="drop6a" onclick="handleItemClick(this)">to ask</span>
       </div>
       <div class="drag-group">
         <div class="drag-group-label">❤️ Options for Blank 2 (decide):</div>
-        <span class="drag-item blank2-option" draggable="true" data-for="drop6b">decide</span>
-        <span class="drag-item blank2-option" draggable="true" data-for="drop6b">deciding</span>
-        <span class="drag-item blank2-option" draggable="true" data-for="drop6b">to decide</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop6b" onclick="handleItemClick(this)">decide</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop6b" onclick="handleItemClick(this)">deciding</span>
+        <span class="drag-item blank2-option" draggable="true" data-for="drop6b" onclick="handleItemClick(this)">to decide</span>
       </div>
       <span class="explanation hidden" id="exp6"></span>
     </li>
@@ -508,7 +613,7 @@
 <!-- Section 2: Proofreading -->
 <div class="container hidden" id="section2">
   <h1 class="page-title">Section 2: Proofreading 🔍</h1>
-  <h2 class="page-subtitle">Click the incorrect word and type the correction</h2>
+  <h2 class="page-subtitle">Click/tap the incorrect word and type the correction</h2>
   
   <ol class="exercise">
     <li>
@@ -581,6 +686,9 @@
 // Global mistake tracker
 let mistakesSummary = [];
 
+// Mobile tap-to-select functionality
+let selectedItem = null;
+
 // Navigation
 function showPage(name) {
   ['landing', 'section1', 'section2', 'summary'].forEach(id => {
@@ -597,7 +705,101 @@ function showPage(name) {
   }
 }
 
-// Drag and Drop
+// Handle tap/click on drag items
+function handleItemClick(item) {
+  // Remove previous selection
+  if (selectedItem) {
+    selectedItem.classList.remove('selected');
+  }
+  
+  // If clicking same item, deselect
+  if (selectedItem === item) {
+    selectedItem = null;
+    // Remove active-target from all drop areas
+    document.querySelectorAll('.drop-area').forEach(area => {
+      area.classList.remove('active-target');
+    });
+    return;
+  }
+  
+  // Select new item
+  selectedItem = item;
+  item.classList.add('selected');
+  
+  // Highlight compatible drop areas
+  const targetId = item.dataset.for;
+  document.querySelectorAll('.drop-area').forEach(area => {
+    area.classList.remove('active-target');
+    if (!targetId || targetId === area.id) {
+      area.classList.add('active-target');
+    }
+  });
+}
+
+// Handle tap/click on drop areas
+function handleDropAreaClick(area) {
+  if (!selectedItem) return;
+  
+  // Check if this is the correct drop area for items with data-for
+  const dragFor = selectedItem.dataset.for;
+  if (dragFor && dragFor !== area.id) {
+    return; // Don't allow drop if wrong blank
+  }
+  
+  fillBlank(area, selectedItem);
+}
+
+// Common function to fill blanks
+function fillBlank(area, item) {
+  const value = item.textContent;
+  const correct = area.dataset.answer;
+  const correct2 = area.dataset.answer2;
+  
+  area.textContent = value;
+  area.classList.add('filled');
+  area.classList.remove('active-target');
+  item.classList.add('used');
+  item.classList.remove('selected');
+  
+  // Clear selection
+  selectedItem = null;
+  document.querySelectorAll('.drop-area').forEach(a => a.classList.remove('active-target'));
+  
+  const qNum = area.id.replace('drop', '').replace(/[a-z]/g, '');
+  const expEl = document.getElementById('exp' + qNum);
+  
+  const hints = {
+    '1': "Use gerund after 'would be' when stating preference.",
+    '2a': "Use base verb after 'would rather'.",
+    '2b': "Use base verb after 'than' in 'would rather...than' pattern.",
+    '3': "'Prefer' can take both 'not to use' (to-infinitive) and 'not using' (gerund). Both are correct!",
+    '4': "Use to-infinitive after 'is' when stating the preferred method.",
+    '5a': "Use gerund as subject at the beginning of a sentence.",
+    '5b': "Use gerund after preposition 'to' (when 'to' is a preposition, not part of infinitive).",
+    '6a': "'Prefer' can take both to-infinitive and gerund, but to-infinitive is more common.",
+    '6b': "'Rather than' takes base verb in this pattern."
+  };
+  
+  const isCorrect = (value === correct) || (correct2 && value === correct2);
+  
+  if (isCorrect) {
+    expEl.classList.remove('hidden', 'error');
+    expEl.innerHTML = `🎉 Correct! ${hints[area.id.replace('drop', '')]}`;
+    createConfetti();
+  } else {
+    area.classList.add('wrong');
+    expEl.classList.remove('hidden');
+    expEl.classList.add('error');
+    expEl.innerHTML = `❌ Try again! Hint: ${hints[area.id.replace('drop', '')]}`;
+    
+    // Add to mistakes summary
+    addToSummary(`Section 1, Q${qNum}: ${hints[area.id.replace('drop', '')]}`);
+    
+    setTimeout(() => area.classList.remove('wrong'), 500);
+  }
+}
+
+// Drag and Drop for Desktop
 let draggedItem = null;
 
 document.querySelectorAll('.drag-item').forEach(item => {
@@ -616,52 +818,13 @@ document.querySelectorAll('.drop-area').forEach(area => {
     e.preventDefault();
     if (!draggedItem) return;
     
-    // Check if drag item is for this specific blank (for two-blank questions)
+    // Check if drag item is for this specific blank
     const dragFor = draggedItem.dataset.for;
     if (dragFor && dragFor !== this.id) {
-      return; // Don't allow drop if wrong blank
+      return;
     }
     
-    const value = draggedItem.textContent;
-    const correct = this.dataset.answer;
-    const correct2 = this.dataset.answer2; // Alternative answer
-    
-    this.textContent = value;
-    this.classList.add('filled');
-    draggedItem.classList.add('used');
-    
-    const qNum = this.id.replace('drop', '').replace(/[a-z]/g, '');
-    const expEl = document.getElementById('exp' + qNum);
-    
-    const hints = {
-      '1': "Use gerund after 'would be' when stating preference.",
-      '2a': "Use base verb after 'would rather'.",
-      '2b': "Use base verb after 'than' in 'would rather...than' pattern.",
-      '3': "'Prefer' can take both 'not to use' (to-infinitive) and 'not using' (gerund). Both are correct!",
-      '4': "Use to-infinitive after 'is' when stating the preferred method.",
-      '5a': "Use gerund as subject at the beginning of a sentence.",
-      '5b': "Use gerund after preposition 'to' (when 'to' is a preposition, not part of infinitive).",
-      '6a': "'Prefer' can take both to-infinitive and gerund, but to-infinitive is more common.",
-      '6b': "'Rather than' takes base verb in this pattern."
-    };
-    
-    const isCorrect = (value === correct) || (correct2 && value === correct2);
-    
-    if (isCorrect) {
-      expEl.classList.remove('hidden', 'error');
-      expEl.innerHTML = `🎉 Correct! ${hints[this.id.replace('drop', '')]}`;
-      createConfetti();
-    } else {
-      this.classList.add('wrong');
-      expEl.classList.remove('hidden');
-      expEl.classList.add('error');
-      expEl.innerHTML = `❌ Try again! Hint: ${hints[this.id.replace('drop', '')]}`;
-      
-      // Add to mistakes summary
-      addToSummary(`Section 1, Q${qNum}: ${hints[this.id.replace('drop', '')]}`);
-      
-      setTimeout(() => this.classList.remove('wrong'), 500);
-    }
+    fillBlank(this, draggedItem);
   });
 });
 
@@ -727,7 +890,7 @@ function addToSummary(text) {
 
 function updateSummaryPage() {
   const list = document.getElementById('weakness-list');
-  list.innerHTML = ''; // Clear existing content
+  list.innerHTML = '';
   
   if (mistakesSummary.length === 0) {
     list.innerHTML = '<li class="no-mistakes">🎉 Perfect! You made no mistakes! Excellent work! 🌟</li>';
